@@ -2,6 +2,7 @@ const express=require('express');
 const router=express.Router();
 const bcrypt=require('bcryptjs');
 
+
 //User Model
 const User =require('../models/User'); 
 
@@ -62,6 +63,7 @@ router.post('/register',(req,res)=>{
                   //save user
                   newUser.save()
                   .then(user=>{
+                      req.flash('success_msg','You are now registered and can login');
                       res.redirect('/users/login');
                   })
                   .catch(err=>console.log(err));
